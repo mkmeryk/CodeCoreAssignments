@@ -2,10 +2,11 @@
 //the number of horizental bars as a string
 
 // const { connect } = require("http2")
+var line = ''
 
-function drawLine (a){
-    let line = ''
-
+const drawLine = function(a){
+    // var line = ''
+    
     for(let i = a; i > 0; i--){
         let bar = '\u2550'
         line = line + bar
@@ -20,37 +21,24 @@ function drawLine (a){
 
 //top border
 function drawTopBorder(a){
-    let topLine = ''
-    for(let y = a; y > 0; y--){
-        let bar = '\u2550'
-        topLine = topLine + bar
-    }
     
-    return '\u2554' + topLine + '\u2557'
+    return '\u2554' + line + '\u2557'
 }
 
 //midlle border
 function drawMiddleBorder(a){
-    let middleLine = ''
-    for(let l = a; l > 0; l--){
-        let bar = '\u2550'
-        middleLine = middleLine + bar
-    }
-    return '\u2560' + middleLine + '\u2563'
+
+    return '\u2560' + line + '\u2563'
 }
 
 //bottom border
 function drawBottomBorder(a){
-    let bottomLine = ''
-    for( let j = a ; j > 0 ; j--){
-        let bar = '\u2550'
-        bottomLine = bottomLine + bar
-    }
-    return '\u255a' + bottomLine + '\u255d'
+   
+    return '\u255a' + line + '\u255d'
 }
 
 
-console.log(drawLine(2))
+drawLine(7)
 console.log(drawTopBorder(5))
 console.log(drawMiddleBorder(5))
 console.log(drawBottomBorder(5))

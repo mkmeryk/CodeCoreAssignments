@@ -37,8 +37,15 @@ function drawBottomBorder(a){
     return '\u255a' + line + '\u255d'
 }
 
+//draw barss around function which takes a string and surrounds it
+//with verstical lines
+
+function drawBarsAround(str){
+    return '\u2551' + str + '\u2551'
+}
 
 drawLine(7)
 console.log(drawTopBorder(5))
 console.log(drawMiddleBorder(5))
 console.log(drawBottomBorder(5))
+console.log(drawBarsAround("My name is Dan"))

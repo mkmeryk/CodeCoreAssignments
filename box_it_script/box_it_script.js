@@ -1,3 +1,9 @@
+#!/home/mk/.nvm/versions/node/v17.4.0/bin/node
+//attempting the stretch - 1
+//to access the program throgh cli with out using command node
+//add #!/path to node and run this command in cli
+//chmod +x box_it_script.js
+
 //turning the file into a screipt to use from cli
 //an empty array to push the arguments taken from the cli
 let arr = []
@@ -73,16 +79,17 @@ function drawBarsAround(str,arr){
 
 //box it function that takes an array of string and returns a string in seprate lines
 function boxIt(arr){
-    //empty array as a container to box all before returning them as a string where each 
+    //setting an empty array as a container to box all before returning them as a string where each 
     //is in single column tables. using .join("\n")
     const tempArray = []
 
-    //adding a if statement to check if the given array is empty to print an empty box
+    //checking if the given array is empty to print an empty box
     if(arr.length === 0){
         tempArray.push(drawTopBorder(1))
         tempArray.push(drawBottomBorder(1))
     }else{
-        //depending on what position in the array the string has in order to add diffrent parts of the box
+        //if the given arrya is not empty then depending on what position in the array
+        //the current string has in order to add diffrent parts of the box
         for(let i = 0; i <= arr.length; i++){
             if(i === 0){
                 //if the string is the first position within the array, it start with adding the top border to

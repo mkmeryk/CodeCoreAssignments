@@ -1,3 +1,14 @@
+//turning the file into a screipt to use from cli
+//an empty array to push the arguments taken from the cli
+let arr = []
+
+//taking n numbers of the givven areguments from the cli to add to the empty array
+for (let j = 2; j < process.argv.length; j++) {
+    arr.push(process.argv[j]);
+}
+
+
+
 //calculating the max length by comparing all the elements in the given array of names
 const maxLength = function(arr){
     let tempLength = 0
@@ -48,6 +59,7 @@ function drawBarsAround(str,arr){
     //since not all the elements have the same length, some of the shorter names require
     //more space after the name so that the side bars would be in line with the rest of lines
     let extraSpace = ''
+
     //checking if the given string is shorter than the max length to add more space to
     //the end of the name
     if(str.length < maxLength(arr)){
@@ -55,6 +67,7 @@ function drawBarsAround(str,arr){
         for(i = countSpace; i > 0 ; i--)
         extraSpace = extraSpace + ' '
     }
+
     return '\u2551' + str + extraSpace + '\u2551'
 }
 
@@ -64,29 +77,36 @@ function boxIt(arr){
     //is in single column tables. using .join("\n")
     const tempArray = []
 
-    //depending on what position in the array the string has in order to add diffrent parts of the box
-    for(let i = 0; i <= arr.length; i++){
-        if(i === 0){
-            //if the string is the first position within the array, it start with adding the top border to
-            //tempArray then takes the string addes bars around it and adds it the tempArray
-            tempArray.push(drawTopBorder(maxLength(arr)))
-            tempArray.push(drawBarsAround(arr[0],arr))
-        }else if( i < arr.length ){
-            //if it is any other postion in the array it draws the middle bars that would go between
-            //two names and then takes the string and adds a border around it
-            tempArray.push(drawMiddleBorder(maxLength(arr)))
-            tempArray.push(drawBarsAround(arr[i],arr))
-        }else{
-            //if it is more than the length of the array meaning there are no more names to execute
-            //it would draw the bottom line
-            tempArray.push(drawBottomBorder(maxLength(arr)))
+    //adding a if statement to check if the given array is empty to print an empty box
+    if(arr.length === 0){
+        tempArray.push(drawTopBorder(1))
+        tempArray.push(drawBottomBorder(1))
+    }else{
+        //depending on what position in the array the string has in order to add diffrent parts of the box
+        for(let i = 0; i <= arr.length; i++){
+            if(i === 0){
+                //if the string is the first position within the array, it start with adding the top border to
+                //tempArray then takes the string addes bars around it and adds it the tempArray
+                tempArray.push(drawTopBorder(maxLength(arr)))
+                tempArray.push(drawBarsAround(arr[0],arr))
+            }else if( i < arr.length ){
+                //if it is any other postion in the array it draws the middle bars that would go between
+                //two names and then takes the string and adds a border around it
+                tempArray.push(drawMiddleBorder(maxLength(arr)))
+                tempArray.push(drawBarsAround(arr[i],arr))
+            }else{
+                //if it is more than the length of the array meaning there are no more names to execute
+                //it would draw the bottom line
+                tempArray.push(drawBottomBorder(maxLength(arr)))
+            }
         }
     }
+    
 
     //takes the tempArray and truns it into a string and would add new lines in betwwen each element of the array
     const boxIt = tempArray.join('\n')
     return boxIt
 }
 
-
-console.log(boxIt(['maybe','no','hello','hi','sammuel']))
+//calling the boxIt function with the arugments given from the cli
+console.log(boxIt(arr))

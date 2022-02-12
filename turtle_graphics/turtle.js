@@ -108,47 +108,64 @@ class Turtle{
     //Create a print method that draws the path that the turtle walked over as a string and logs it to the console. 
     //You should use the array of coordinates returned by .allPoints() as your starting point.
     print(){
-        console.log('----')
-        let path = ['']
-        let tempPath = ''
-        let arr = [[0,0],[0,1],[0,3],[1,3],[2,3]]
-        // for(let i = 0; i <arr.length; i++){
-        //     for(let arri = 2; arri > 0;arri--){
-        //         tempPath += '-'
-        //         path.push(tempPath)
-        //         console.log('1')
-        //     }
-        //     console.log('2')
-        // }
-        // console.log(path)
-
-        //test
-        let testmax = [2,3]
-    
-        let testX = testmax[0]
-        let testY = testmax [1]
-        console.log(testmax)
-        for(let i = 0; i<= testY ;i++){
-            for(let j = 0; j <= testX ;j++){
-                let found = false
-                for( let move = 0; move < arr.length; move++){
-                    if(arr[move][0] == j){
-                        if(arr[move][1]==i){
-                            tempPath = tempPath + 'x'
-                            found = true
-                        }
+        let path = ''
+        let xMax = this.max[0]
+        let yMax = this.max[1]
+        console.log(this.max)
+        //for every y
+        for(let i = 0;i <= yMax ;i++){
+            //for every x
+            for(let j = 0; j <= xMax ; j++){
+                let filledSquares = false
+                //for every moved square
+                for(let moved = 0; moved < this.point.length; moved++){
+                    if(this.point[moved][0] === j && this.point[moved][1] === i){
+                        
+                        path = path + ` \u25a9`
+                        filledSquares = true
+                        break;
+                    
                     }
                 }
-                if(found == false){
-                    tempPath = tempPath + 'y'
+
+                if(filledSquares == false){
+                path = path + ` \u25a2`
                 }
 
-            }
-            tempPath = tempPath + '\n'
+            }  
+            path = path + '\n' 
         }
-        return tempPath
         
+        return path
+        
+
     }
+
+    // print() {
+    //     var finalString = ""
+    //     var x = this.max[0]
+    //     var y = this.max[1]
+    //     console.log(this.max)
+    //     for (var i = 0; i<=y; i++){
+    //         for(var j=0; j<=x; j++){
+    //             var found = false
+    //             for(var move = 0; move<this.point.length; move++){
+    //                if (this.point[move][0] == j){
+    //                    if ( this.point[move][1] == i){
+    //                         finalString = finalString + "X"
+    //                         found = true
+    //                         break;
+    //                     }
+    //                 }
+    //             }  
+    //             if(found == false){
+    //                 finalString = finalString + "Y"
+    //             }
+    //         }
+    //         finalString = finalString + "\n"
+    //     }
+    //     return finalString
+    // }
 
 }
    
@@ -171,6 +188,10 @@ turtle.right()
 console.log('turtle.forward(5)')
 turtle.forward(5)
 console.log('turtle.maxLength()')
+// turtle.forward(3)
+// turtle.right()
+// turtle.forward(3)
+// turtle.right()
 turtle.maxLength()
 turtle.allpoints()
 turtle.print()
@@ -178,9 +199,28 @@ turtle.print()
 console.log(turtle.print())
 console.log('hi')
 
-// const flash = new Turtle(0, 4)
-// flash.forward(3)
-// flash.left()
-// flash.forward(3);
-// flash.maxLength()
-// flash.allpoints()
+const flash = new Turtle(0, 4)
+flash.forward(3)
+flash.left()
+flash.forward(3);
+flash.maxLength()
+flash.allpoints()
+console.log(flash.print())
+
+const ttl = new Turtle(0,4)
+ttl.forward(3)
+ttl.left()
+ttl.forward(3)
+ttl.right()
+ttl.forward(5)
+ttl.right()
+ttl.forward(8)
+ttl.right()
+ttl.forward(5)
+ttl.right()
+ttl.forward(3)
+ttl.left()
+ttl.forward(3)
+ttl.maxLength()
+ttl.allpoints()
+console.log(ttl.print())

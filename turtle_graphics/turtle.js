@@ -1,4 +1,4 @@
-//Create a Turtle class whose constructor will take two arguments (in order): x & y coordinates. 
+/*Create a Turtle class whose constructor will take two arguments (in order): x & y coordinates.*/
 
 class Turtle{
 
@@ -21,7 +21,8 @@ class Turtle{
    
 
     /* Create a forward method that takes a number of steps then updates the Turtle instance with 
-    its new position after moving that many steps. Keep track of every movement the turtle makes including the first one. */
+    its new position after moving that many steps. Keep track of every movement the turtle makes
+    including the first one. */
     forward(step){
 
         if(this.directionFacing === 'east'){    //if the turtle is moving towards east it would add to it's original position
@@ -56,8 +57,8 @@ class Turtle{
         
     };
 
-    //Create a right method that takes zero arguments. When right is called, update the Turtle 
-    //instance to rotate its facing to the right. A turtle should begin facing east.
+    /*Create a right method that takes zero arguments. When right is called, update the Turtle 
+    instance to rotate its facing to the right. A turtle should begin facing east.*/
     right(){
         
         if(this.directionFacing === 'east'){    //if the turtle is facing east then turning right would change it's facing direction to south
@@ -80,7 +81,7 @@ class Turtle{
 
     };
 
-    //Create a left method like right but turns the turtle's facing to the left.
+    /*Create a left method like right but turns the turtle's facing to the left.*/
     left(){
         
         if(this.directionFacing === 'east'){    //if the turtle is facing east then turning left would change it's facing direction to north
@@ -103,7 +104,7 @@ class Turtle{
 
     };
 
-    //Create an allPoints method which returns an array containing all coordinates the turtle has walked over.
+    /*Create an allPoints method which returns an array containing all coordinates the turtle has walked over.*/
     allpoints(){
 
         console.log(this.point);
@@ -131,8 +132,8 @@ class Turtle{
 
     }
 
-    //Create a print method that draws the path that the turtle walked over as a string and logs it to the console. 
-    //You should use the array of coordinates returned by .allPoints() as your starting point.
+    /*Create a print method that draws the path that the turtle walked over as a string and logs it to the console. 
+    You should use the array of coordinates returned by .allPoints() as your starting point.*/
     print(){
 
         this.maxLength();
@@ -186,38 +187,118 @@ class Turtle{
 };
    
 
+//stetch - as a script
+/*Make the turtle graphics program usable as a script. It should take a string as a an argument that 
+is seperated by dashes (i.e. ->). This string will contain all turtle commands in abbreviated form:
+tX,Y for new Turtle where X & Y are numbers representing the starting x & y coordinates. 
+If this command is not given, begin the turtle at (0, 0).fN for forward where N is a number 
+representing how many units the turtle moves forward.
+r for right
+l for left*/
+
+function AsAScript(){
+
+    //get the third instence of process.argv 
+    let script = process.argv[2];
+
+    //diving the string by '-'
+    const inputFromCLI = script.split('-');
+
+    //an empty container of the moves for turtle
+    let moves = [];
+
+    //adding all the moves for turtle to move
+    for(let index = 0; index < inputFromCLI.length ; index++){
+    
+        moves.push(inputFromCLI[index]);
+
+    }
+
+    //setting the starting point to 0,0 as a defult if the command of
+    //tx,y which would detrmine trutles starting pints
+    let startingPoint = inputFromCLI[0];
+    let startingPointX = 0;
+    let startingPointY = 0;
+
+    //checking if the turtle position comman is given
+    if(startingPoint.includes('t')){
+    startingPointX = parseInt(startingPoint[1]);
+    startingPointY = parseInt(startingPoint[3]);
+    };
+
+    //a new turtle called scrpit turtle
+    const scriptTurtle = new Turtle(startingPointX,startingPointY);
+
+    //checking for each given command to match with the methods from class turtle
+    for(let moveIt = 0 ; moveIt < moves.length ; moveIt++){
+
+        if(moves[moveIt].includes('f')){    //if the command includes 'f' is for method forward() and the following number represents how many unit the turtle moves forward
+
+            let count = parseInt(moves[moveIt].slice(1));
+            scriptTurtle.forward(count);
+            
+        }else if(moves[moveIt].includes('r')){    //if the command includes 'r' it represent the right() method
+
+            scriptTurtle.right();
+            
+        }else if(moves[moveIt].includes('l')){    //if the command includes 'l' it represent the left() method
+
+            scriptTurtle.left();
+            
+        }else{    //in the circumstance in which the starting points are given
+
+            
+        };
+        
+    };
+
+    //printing the scriptTurtle
+    scriptTurtle.print();
+
+};
 
 
-const turtle = new Turtle(0,0);
-turtle.forward(5);
-turtle.right();
-turtle.forward(5);
-turtle.right();
-turtle.forward(5);
-turtle.right();
-turtle.forward(5);
-turtle.print();
+if(process.argv.length >= 3){    //in the instance that data is given the program would use it to print the scriptTurtle
 
+    AsAScript();
 
-const flash = new Turtle(0, 4);
-flash.forward(3);
-flash.left();
-flash.forward(3);
-flash.print();
+}else{    //if no information given use the in program data
+    
+    console.log('turtle1');
+    const turtle = new Turtle(0,0);
+    turtle.forward(5);
+    turtle.right();
+    turtle.forward(5);
+    turtle.right();
+    turtle.forward(5);
+    turtle.right();
+    turtle.forward(5);
+    turtle.print();
 
-const ttl = new Turtle(0,4);
-ttl.forward(3);
-ttl.left();
-ttl.forward(3);
-ttl.right();
-ttl.forward(5);
-ttl.right();
-ttl.forward(8);
-ttl.right();
-ttl.forward(5);
-ttl.right();
-ttl.forward(3);
-ttl.left();
-ttl.forward(3);
-ttl.print();
+    console.log('turtle2');
+    const turtle2 = new Turtle(0, 4);
+    turtle2.forward(3);
+    turtle2.left();
+    turtle2.forward(3);
+    turtle2.print();
+
+    console.log('turtle3');
+    const turtle3 = new Turtle(0,4);
+    turtle3.forward(3);
+    turtle3.left();
+    turtle3.forward(3);
+    turtle3.right();
+    turtle3.forward(5);
+    turtle3.right();
+    turtle3.forward(8);
+    turtle3.right();
+    turtle3.forward(5);
+    turtle3.right();
+    turtle3.forward(3);
+    turtle3.left();
+    turtle3.forward(3);
+    turtle3.print();
+
+};
+
 

@@ -12,12 +12,13 @@ let list = []
 interface.prompt();
 interface.on('line', line => {
     if(line == 'v'){
-
+        
         view();
 
     }else if ( line == 'n'){
     
-        interface.question("New Task: ", (newTask) =>{
+        console.log("What?")
+        interface.question("", (newTask) =>{
             add({newTask:newTask , completed:false});
         });
     
@@ -28,11 +29,11 @@ interface.on('line', line => {
 
     }else if(line[0] == 'd'){
 
-        console.log("delete")
+        del(line[1]);
 
     }else if( line == 'q'){
 
-        process.exit();
+        quit();
 
     }else{
 
@@ -45,9 +46,9 @@ interface.on('line', line => {
 When the todoCLI.js is first executed, a menu as shown below should be displayed. 
 These are all the options the user should be able to perform.*/
 
-function welcome(){
-    console.log(`\nWelcome to Todo CLI! \n------------------- \n(v)View \u2022 (n)New \u2022 (cX)Complete \u2022 (dX)Delete \u2022 (q)Quit \n`)
-}
+
+console.log(`\nWelcome to Todo CLI! \n------------------- \n(v)View \u2022 (n)New \u2022 (cX)Complete \u2022 (dX)Delete \u2022 (q)Quit \n`)
+
 
 function menu(){
     console.log(`\n(v)View \u2022 (n)New \u2022 (cX)Complete \u2022 (dX)Delete \u2022 (q)Quit \n`);
@@ -60,17 +61,27 @@ of the todo list then the Todo Menu again. See the example below.*/
 
 function view(){
 
-    for( let i = 0; i< list.length; i++){
+    if(list.length == 0){
 
-        let numberOfTask = i + 1;
-        if(list[i].completed == false){
-            console.log( numberOfTask + "[  ]" + list[i].newTask);
-        }else{
-            console.log( numberOfTask + "[✓ ]" + list[i].newTask);
+        console.log("List is empty...");
+    
+    }else{
+
+        for( let i = 0; i< list.length; i++){
+
+            let numberOfTask = i;
+            if(list[i].completed == false){
+                console.log( numberOfTask + "-[  ] " + list[i].newTask);
+            }else{
+                console.log( numberOfTask + "-[✓ ] " + list[i].newTask);
+            }
+            
         }
-        
+
     }
-    menu()
+
+    menu();
+
 }
 
 /*Add
@@ -79,9 +90,10 @@ item to add to the list. The user can then write a response. Save their response
 a new item at the end of the todo list. */
 
 function add(newTask){
-    console.log(newTask);
+
     list.push(newTask);
     menu();
+
 }
 
 /* Complete
@@ -91,8 +103,13 @@ Tell the user which item was marked. Then, re-display the Todo Menu.*/
 
 function completed(n){
 
-    (list[n-1]).completed = true;
-    console.log(`Completed task: ${(list[n-1]).newTask}`);
+    if(n>list.length || n < 0 || isNaN(n) == true || list.length == 0){
+        console.log("Invalid task number, please refer to the number printed by each task")
+    }else{
+        (list[n]).completed = true;
+        console.log(`Completed task: ${list[n].newTask}`);
+    }
+    
 
 }
 
@@ -101,11 +118,27 @@ From the Todo Menu pressing dX where X refers to the index
 of a Todo item then `Enter` should remove that from the list. 
 Tell the user which item was deleted. Then, re-display the Todo Menu. */
 
+function del(n){
+
+    //if the given number is not an actual existing task
+    if(n>list.length || n < 0 || isNaN(n) == true || list.length == 0){
+        console.log("Invalid task number, please refer to the number printed by each task")
+    }else{
+        console.log(`Deleted task: ${list[n].newTask}`);
+        list.splice(n);
+    }
+  
+}
 
 
 /*Quit
 From the Todo Menu pressing q quits the application. Say farewell. */
 /* */
+function quit(){
+
+    console.log("See you soon!");
+    process.exit();
+
+}
 
 
-welcome();

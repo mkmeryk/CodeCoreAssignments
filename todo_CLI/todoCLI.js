@@ -118,6 +118,7 @@ From the Todo Menu pressing dX where X refers to the index
 of a Todo item then `Enter` should remove that from the list. 
 Tell the user which item was deleted. Then, re-display the Todo Menu. */
 
+//since the delete frase is a js reserved frase del stands for delete
 function del(n){
 
     //if the given number is not an actual existing task

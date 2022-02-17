@@ -7,7 +7,7 @@ const interface = readline.createInterface(
     }
 );
 
-let list = ['task1']
+let list = []
 
 interface.prompt();
 interface.on('line', line => {
@@ -16,20 +16,17 @@ interface.on('line', line => {
         view();
 
     }else if ( line == 'n'){
-
-        console.log("new")
-        console.log("what?")
-        //readline not working
+    
         interface.question("New Task: ", (newTask) =>{
-            add(newTask);
+            add({newTask:newTask , completed:false});
         });
-        // list.push(newTask);
+    
 
-    }else if( line == 'c'){
+    }else if(line[0] == 'c'){
 
-        console.log("compelete")
+        completed(line[1]);
 
-    }else if(line == 'd'){
+    }else if(line[0] == 'd'){
 
         console.log("delete")
 
@@ -47,6 +44,7 @@ interface.on('line', line => {
 /*The Menu
 When the todoCLI.js is first executed, a menu as shown below should be displayed. 
 These are all the options the user should be able to perform.*/
+
 function welcome(){
     console.log(`\nWelcome to Todo CLI! \n------------------- \n(v)View \u2022 (n)New \u2022 (cX)Complete \u2022 (dX)Delete \u2022 (q)Quit \n`)
 }
@@ -61,8 +59,17 @@ From the Todo Menu, pressing v then Enter should display the contents
 of the todo list then the Todo Menu again. See the example below.*/
 
 function view(){
-    console.log("View");
-    console.log(list)
+
+    for( let i = 0; i< list.length; i++){
+
+        let numberOfTask = i + 1;
+        if(list[i].completed == false){
+            console.log( numberOfTask + "[  ]" + list[i].newTask);
+        }else{
+            console.log( numberOfTask + "[✓ ]" + list[i].newTask);
+        }
+        
+    }
     menu()
 }
 
@@ -72,9 +79,9 @@ item to add to the list. The user can then write a response. Save their response
 a new item at the end of the todo list. */
 
 function add(newTask){
-    console.log(newTask)
-    list.push(newTask)
-    menu()
+    console.log(newTask);
+    list.push(newTask);
+    menu();
 }
 
 /* Complete
@@ -82,7 +89,12 @@ From the Todo Menu pressing cX where X refers to the index
 of a Todo item then Enter should mark that item as complete. 
 Tell the user which item was marked. Then, re-display the Todo Menu.*/
 
+function completed(n){
 
+    (list[n-1]).completed = true;
+    console.log(`Completed task: ${(list[n-1]).newTask}`);
+
+}
 
 /*Delete
 From the Todo Menu pressing dX where X refers to the index 

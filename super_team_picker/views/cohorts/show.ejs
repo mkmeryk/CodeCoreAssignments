@@ -1,0 +1,16 @@
+<%- include("../partials/header.ejs") %>
+    <div class="card mb-4">
+        <% if(cohort.logo_url){%>
+            <img src="<%-cohort.logo_url%>" alt="Cohort logo" class="card-img-top">
+        <%}%>
+        <div class="card-body">
+            <h5><%-cohort.name%></h5>
+            <p class="card-text">
+                <%- cohort.members %>
+                <em>Created at<%-new Date(cohort.created_at).toLocalString()%></em>
+            </p>
+
+        </div>
+
+    </div>
+<%- include("../partials/footer.ejs") %>

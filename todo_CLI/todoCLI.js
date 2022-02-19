@@ -1,3 +1,7 @@
+//To do cli assignmnet
+//comments made using // are written by Mk and the comments in /* */ are copied from the assignment page
+
+//requiring the readline
 const readline = require('readline');
 const interface = readline.createInterface(
     {
@@ -10,6 +14,7 @@ const interface = readline.createInterface(
 //an empty array for to do items
 let list = []
 
+//diffrent phrases that are inputed by the user would go through the if statment
 interface.prompt();
 interface.on('line', line => {
     
@@ -48,10 +53,10 @@ interface.on('line', line => {
 When the todoCLI.js is first executed, a menu as shown below should be displayed. 
 These are all the options the user should be able to perform.*/
 
-
+//prints the welocm message when the application start to run
 console.log(`\nWelcome to Todo CLI! \n------------------- \n(v)View \u2022 (n)New \u2022 (cX)Complete \u2022 (dX)Delete \u2022 (q)Quit \n`)
 
-
+//menu function which prints out the diffrent options of task that is available to the user
 function menu(){
     console.log(`\n(v)View \u2022 (n)New \u2022 (cX)Complete \u2022 (dX)Delete \u2022 (q)Quit \n`);
 };
@@ -61,6 +66,7 @@ function menu(){
 From the Todo Menu, pressing v then Enter should display the contents
 of the todo list then the Todo Menu again. See the example below.*/
 
+//prints out the to do items
 function view(){
 
     if(list.length == 0){    //If there is no tasks in the the todo list it would print a message and would ask for more input
@@ -91,6 +97,7 @@ From the Todo Menu pressing n then Enter should ask the user what
 item to add to the list. The user can then write a response. Save their response as 
 a new item at the end of the todo list. */
 
+//adding a new to do task
 function add(newTask){
 
     list.push(newTask);    //would add the new give task with the defult completed value of false to the list
@@ -103,6 +110,7 @@ From the Todo Menu pressing cX where X refers to the index
 of a Todo item then Enter should mark that item as complete. 
 Tell the user which item was marked. Then, re-display the Todo Menu.*/
 
+//compeleting a to do task
 function completed(n){
 
     if(n>list.length || n < 0 || isNaN(n) == true || list.length == 0){    //checks for invalid inputs
@@ -119,7 +127,8 @@ From the Todo Menu pressing dX where X refers to the index
 of a Todo item then `Enter` should remove that from the list. 
 Tell the user which item was deleted. Then, re-display the Todo Menu. */
 
-//since the delete frase is a js reserved frase del stands for delete
+//deleting an existing to do task
+//since the delete phrase is a js reserved frase del stands for delete
 function del(n){
 
     if(n>list.length || n < 0 || isNaN(n) == true || list.length == 0){    //checks for invalid inputs
@@ -136,7 +145,7 @@ function del(n){
 From the Todo Menu pressing q quits the application. Say farewell. */
 /* */
 
-
+//quiting the program
 function quit(){
 
     console.log("See you soon!");

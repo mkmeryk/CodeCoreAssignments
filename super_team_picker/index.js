@@ -9,6 +9,9 @@ app.use(express.urlencoded({extended: true}))
 const cookieParser = require('cookie-parser');
 app.use(cookieParser());
 
+//custom middle ware
+//something along there is not working
+
 //logger middleware using morgan
 const logger = require('morgan');
 app.use(logger('dev'));

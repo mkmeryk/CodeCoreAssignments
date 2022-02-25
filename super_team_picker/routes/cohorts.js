@@ -27,6 +27,20 @@ router.get('/:id',(req,res)=>{
     })
 })
 
+router.post('/',(req,res) =>{
+    knex('cohorts')
+    .insert({
+        name: req.body.name,
+        logo_url: req.body.logo_url,
+        members: req.body.members
+    })
+    .returning('*')
+    .then(cohorts =>{
+        const cohort = cohort[0];
+        res.redirect(`/cohorts/${cohort.id}`)
+    })
+})
+
 //creating a new cohort
 router.get('/new',(req,res) =>{
     res.render('cohort/new',{cohort: false});

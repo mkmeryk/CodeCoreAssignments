@@ -3,7 +3,7 @@
         Cohorts
     </h1>
     <div>
-        <% for(let cohort of cohorts)%>
+        <% for(let cohort of cohorts){%>
         <div class=" 'card mb-4">
             <div class="card-body">
                 <a href="/cohorts/<%-cohort.id%>">
@@ -13,6 +13,7 @@
             </div>
 
         </div>
+        <% } %>
     </div>
 
 <%- include("../partials/footer.ejs") %>

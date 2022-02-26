@@ -4,7 +4,7 @@
     class='form-control'
     name="name" 
     placeholder="Cohort's name"
-    value="<%- cohort?cohort.name%>"
+    value="<%= cohort?cohort.name: '' %>"
     >
 </div>
 
@@ -14,7 +14,7 @@
     class='form-control'
     name="logo_url" 
     placeholder="e.g. http://logourl.com/my_cohorts_logo"
-    value="<%- cohort?cohort.logo_url%>"
+    value="<%= cohort?cohort.logo_url: '' %>"
     >
 </div>
 
@@ -26,6 +26,6 @@
     cols="60" 
     rows="5"
     >
-    <%- cohort?cohort.members%>
+    <%- cohort?cohort.members: '' %>
     </textarea>
 </div>

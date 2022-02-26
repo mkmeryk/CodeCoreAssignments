@@ -3,30 +3,27 @@ const express = require('express');
 const knex = require('../db/client');
 const router = express.Router();
 
+//homePage
+router.get('/home',(req,res) =>{
+    res.render('cohorts/home')
+})
+
 //displaying all the cohorts in the main page
 router.get('/',(req,res) =>{
     knex('cohorts')
     .orderBy('created_at','desc')
     .then(cohorts =>{
-        res.render('cohorts/index',{posts:posts});
+        console.log(cohorts)
+        res.render('cohorts/index',{cohorts:cohorts});
     })
 })
 
-//create a new cohort template
-router.get('/:id',(req,res)=>{
-    knex('cohorts')
-    .where('id',req.params.id)
-    .first()
-    .then(cohort =>{
-        if(!cohort){
-            res.send('No cohort found');
-        }else{
-            res.render('cohort/show', {cohort:cohort});
-        }
-        
-    })
+//creating a new cohort template
+router.get('/new',(req,res) =>{
+    res.render('cohorts/new',{cohort: false});
 })
 
+//creating a new cohort
 router.post('/',(req,res) =>{
     knex('cohorts')
     .insert({
@@ -36,13 +33,28 @@ router.post('/',(req,res) =>{
     })
     .returning('*')
     .then(cohorts =>{
-        const cohort = cohort[0];
+        const cohort = cohorts[0];
         res.redirect(`/cohorts/${cohort.id}`)
     })
 })
 
-//creating a new cohort
-router.get('/new',(req,res) =>{
-    res.render('cohort/new',{cohort: false});
+
+//show a specific cohort
+router.get('/:id',(req,res)=>{
+    knex('cohorts')
+    .where('id',req.params.id)
+    .first()
+    .then(cohort =>{
+        if(!cohort){
+            res.send('No cohort found');
+        }else{
+            res.render('cohorts/show', {cohort:cohort});
+        }
+        
+    })
 })
 
+
+
+
+module.exports = router;

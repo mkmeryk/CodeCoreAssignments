@@ -1,0 +1,15 @@
+<%- include("../partials/header.ejs") %>
+<div class="page">
+    <h1>
+        Edit a cohort
+    </h1>
+
+    <form action="/cohorts/<%- cohort.id%>" method="POST">
+        <input type="hidden" name="_method" value="PATCH">
+        <%- include('../partials/formInput.ejs')%>
+        <input type="submit" value="Edit Post" class="mt-2 btn btn-outline-primary">
+    </form>
+
+</div>
+
+<%- include("../partials/footer.ejs") %>

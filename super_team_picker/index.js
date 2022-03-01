@@ -6,12 +6,12 @@ const app = express();
 const methodOverride = require('method-override');
 
 //urlencoded
-app.use(express.urlencoded({extended: true}))
+app.use(express.urlencoded({extended: true}));
 
 //method over ride middle ware
 app.use(methodOverride((req,res) =>{
     const method = req.body._method;
-    return method
+    return method;
 }))
 
 //cookie parser
@@ -39,8 +39,11 @@ app.use('/cohorts',cohortRouter);
 
 //server
 const PORT = 3000;
-const DOMAIN = 'localhost'
+const DOMAIN = 'localhost';
 
 app.listen(PORT,DOMAIN,() =>{
-    console.log(`server is listening on http://${DOMAIN}:${PORT}`)
+
+    console.log(`server is listening on http://${DOMAIN}:${PORT}/cohorts/home`);
+
 })
+

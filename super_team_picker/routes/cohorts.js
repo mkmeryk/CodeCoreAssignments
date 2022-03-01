@@ -38,6 +38,29 @@ router.post('/',(req,res) =>{
     })
 })
 
+//editing a cohort template
+router.get('/:id/edit',(req,res) =>{
+    knex('cohorts')
+    .where('id', req.params.id)
+    .first()
+    .then(cohort =>{
+        res.render('cohorts/edit',{cohort:cohort})
+    })
+})
+
+//editing a cohort
+router.patch('/:id',(req,res) =>{
+    knex('cohorts')
+    .where('id',req.params.id)
+    .update({
+        name: req.body.name,
+        logo_url: req.body.logo_url,
+        members: req.body.members
+    })
+    .then(() =>{
+        res.redirect(`/cohorts/${req.params.id}`)
+    })
+})
 
 //show a specific cohort
 router.get('/:id',(req,res)=>{
@@ -54,6 +77,15 @@ router.get('/:id',(req,res)=>{
     })
 })
 
+//delete cohort template
+router.delete('/:id' ,(req,res) =>{
+    knex('cohorts')
+    .where('id',req.params.id)
+    .del()
+    .then(() =>{
+        res.redirect('/cohorts')
+    })
+})
 
 
 

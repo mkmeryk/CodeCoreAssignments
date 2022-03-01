@@ -9,6 +9,11 @@
                 <%- cohort.members %>
                 <em>Created at <%- new Date(cohort.created_at) %></em>
             </p>
+            <form action="/cohorts/<%- cohort.id%>" method="POST">
+                <input type="hidden" name="_method" value="DELETE">
+            <input type="submit" class="btn btn_outline_danger" value="DELETE">
+            </form>
+            <a href="/cohorts/<%-cohort.id%>/edit" class="btn btn_outline_success">Edit</a>
 
         </div>
 

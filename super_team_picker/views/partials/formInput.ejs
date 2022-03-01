@@ -1,14 +1,5 @@
-<div class='form-control'>
-    <input 
-    type="text" 
-    class='form-control'
-    name="name" 
-    placeholder="Cohort's name"
-    value="<%= cohort?cohort.name: '' %>"
-    >
-</div>
-
 <div class='form-group'>
+    <label for="logo_url" class="mx-3">Cohorts Logo</label>
     <input 
     type="url" 
     class='form-control'
@@ -19,6 +10,18 @@
 </div>
 
 <div class='form-group'>
+    <label for="name" class="mx-3">Cohorts name</label>
+    <input 
+    type="text" 
+    class='form-control'
+    name="name" 
+    placeholder="Cohort's name"
+    value="<%= cohort?cohort.name: '' %>"
+    >
+</div>
+
+<div class='form-group'>
+    <label for="members" class="mx-3">Cohorts members names</label>
     <textarea 
     name="members" 
     class='form-control'

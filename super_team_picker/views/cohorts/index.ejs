@@ -1,14 +1,27 @@
 <%- include("../partials/header.ejs") %>
-    <h1>
+    <h1 class="mx-3">
         Cohorts
     </h1>
     <div>
         <% for(let cohort of cohorts){%>
-        <div class=" 'card mb-4">
-            <div class="card-body">
-                <a href="/cohorts/<%-cohort.id%>">
-                    <h5 class="card-title"><%- cohort.name%></h5>
-                </a>
+        <div class=" 'card mb-4" >
+            <div class="form-control">
+                <div>
+                    <h5 class="mx-3">
+                        <%-cohort.name%>
+                    </h5>
+                </div>
+                <p>
+                    <%- cohort.members %>
+
+                </p>
+                <button class="btn btn-outline-primary" >
+
+
+                    <a href="/cohorts/<%-cohort.id%>"></a>
+                    Show cohort
+
+                </button>
 
             </div>
 

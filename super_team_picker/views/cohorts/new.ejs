@@ -1,10 +1,10 @@
 <%- include("../partials/header.ejs") %>
 
-    <h1>New Cohort</h1>
+    <h5 class="mx-3">New Cohort</h1>
     
-        <form action="/cohorts" method="POST">
+        <form action="/cohorts" method="POST" class="mx-3" >
             <%- include("../partials/formInput.ejs") %>
-            <input type="submit" value="Create Cohort" class="btn btn-outline-success">
+            <input type="submit" value="Create Cohort" class="btn btn-outline-primary">
         </form>
 
 <%- include("../partials/footer.ejs") %>

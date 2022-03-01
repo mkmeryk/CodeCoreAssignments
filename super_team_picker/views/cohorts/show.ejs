@@ -1,29 +1,45 @@
 <%- include("../partials/header.ejs") %>
 
     <div class="page">
+
         <h5 class="mx-3" style="color:dodgerblue;" >
             Team Picker
         </h5>
+
         <div class="d-flex ">
+
             <div class="card mb-4">
+
                 <% if(cohort.logo_url){%>
                     <img class="rounded-circle" src="<%-cohort.logo_url%>" alt="Cohort logo" class="card-img-top">
                 <%}%>
+
                 <div class="card-body">
+
                     <div class="p-2 ">
+
                         <h5><%-cohort.name%></h5>
+
                     <p class="card-text">
+
                         <%- cohort.members %>
                         <em>Created at <%- new Date(cohort.created_at) %></em>
+
                     </p>
+
                     </div>
+
                     <div class="d-flex gap-2">
+
                         <div>
+
                             <form action="/cohorts/<%- cohort.id%>" method="POST" >
                                 <input type="hidden" name="_method" value="DELETE">
                                 <input type="submit" class="btn btn-outline-primary" value="DELETE">
                             </form>
+
                         </div>
+
                         <div>
                             
                             <a href="/cohorts/<%-cohort.id%>/edit" class="btn btn-outline-primary">Edit</a>
@@ -32,23 +48,29 @@
                     </div>
 
                     <hr>
+
                     <div>
                         <form action="/cohorts/<%- cohort.id %>" method="POST">
+
                             <div class="p-2 d-grid gap-2">
                                 <label for="">Method</label>
                             </div>
+
                             <div >
                                 <input type="radio" name="method" id="team_count" value="team_count"> 
                                 <label for="">Team Count</label>
                             </div>
+
                             <div>
                                 <input type="radio" name="method" id="number_per_page" value="number_per_page">
                                 <label for="">Number Per team</label>
                             </div>
+
                             <div class="p-2 d-grid gap-2">
                                 <label class="mx-3" >Quantity</label>
                                 <input type="text" name="quantity" id="quantity" >
                             </div>
+
                             <div class="p-2 d-grid gap-2">
                                 <input class="btn btn-outline-primary" type="submit" value="assign" name="" id="">
                             </div>
@@ -59,10 +81,10 @@
 
                 <ol>
                     <% if(renderedCohort.length){%>
+
                     <label >#</label>
                     <label class="mx-3">Members</label>
                     <%renderedCohort.forEach(item =>{%>
-                    
                     <hr>
                     <li class="mx-3"><%- item %></li>
                     
@@ -73,7 +95,6 @@
 
         </div>
 
-    
     </div>
           
 <%- include("../partials/footer.ejs") %>

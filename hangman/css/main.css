@@ -36,3 +36,11 @@
     flex-direction: row;
     justify-content: center;
 }
+
+.image{
+    border-radius: 5px;
+    margin: 1mm;
+    display: flex;
+    justify-content: center;
+    
+}

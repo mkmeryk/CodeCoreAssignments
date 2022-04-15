@@ -1,12 +1,21 @@
 $(document).ready(function(){
 
-    let hearts = 10;
+    let hearts = 6;
     let lettersClicked = "";
     let correctGuessed = ['_ ','_ ','_ ','_ ','_ ','_ '];
     const keyword = "action";
     const letters = document.querySelectorAll(".keyboard-letters");
     const failureSound = (new Audio("staticAssets/sounds/failure.wav",volume = 0.1));
 
+    
+    const img0 = "./staticAssets/img/gallows+head.jpg";
+    const img1 = "./staticAssets/img/gallows+head+torso.jpg";
+    const img2 = "./staticAssets/img/gallows+head+torso+leg.jpg";
+    const img3 = "./staticAssets/img/gallows+head+torso+2leg.jpg";
+    const img4 = "./staticAssets/img/gallows+head+torso+2leg+arm.jpg";
+    const img5 = "./staticAssets/img/gallows+head+torso+2leg+2arm.jpg";
+
+    const images = [img5,img4,img3,img2,img1,img0];
 
     letters.forEach(node =>{
         node.addEventListener('click', event=>{
@@ -41,25 +50,62 @@ $(document).ready(function(){
                 });
 
                 //replacing the empty line with the correct guessed letter in an appropriate index 
-
                 $('h1').html(`${correctGuessed.join('')}`)
-                // $("#guess-bar").last().prepend(`<h1 class="guess-bar-line">${correctGuessed}</h1>`);
+                
+                //finishing the game
+                if((correctGuessed.includes('_ ')) !== true){
+                    alert("Congrats you have won! Click okay to play another round");
+                    location.reload();
+                }
                 
             } else {
 
+                //lower the hearts
                 hearts -= 1
-                console.log(hearts);
+                console.log(hearts)
+                console.log($("img").attr("src"))
+                $("img").attr("src",images[hearts])
+                //add more body parts
+                // if (hearts = 6) {
+                //     $('img').attr("src","staticAssets/img/gallows.jpg")
+                // } else if (hearts = 5) {
+                //     console.log('5 hearts left')
+                //     hearts -= 1
+                //     $('img').attr("src","staticAssets/img/gallows+head.jpg")
+                // } else if (hearts = 4) {
+                //     console.log('4 hearts left')
+                //     //$('.img').html(img2);
+                // } else if (hearts = 3) {
+                //     $('.img').html(img3);
+                // } else if (hearts = 2) {
+                //     $('.img').html(img4);
+                // } else if (hearts = 1) {
+                //     $('.img').html(img5);
+                // } else if (hearts <= 0) {
+                //     $('.img').html(img6);
+                //     failureSound.play();
+                //     alert("Game over try again, click ok to refresh the page");
+                //     location.reload();
+                // }else{
 
-                if (hearts <= 0) {
+                // }
+
+                // $('.img').attr("src","staticAssets/img/gallows+head.jpg")
+
+                // if (hearts = 6) {
+                //     console.log('have only 6 more hearts left')
+                //     console.log(hearts)
+                // }
+
+                if(hearts <= 0){
                     failureSound.play();
                     alert("Game over try again, click ok to refresh the page");
                     location.reload();
                 }
-                //add more body parts
-            }
 
+                
+            }
         })
-        
     })    
 })
 

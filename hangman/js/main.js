@@ -1,11 +1,21 @@
 $(document).ready(function(){
 
+    // const keywords = ["greyling","greydwarf","brute","shaman","troll","ghost","abomination"];
+    // const keyword = keywords[Math.floor(Math.random() * (keywords.length))];
+    // console.log(keyword.length);
+    // let correctGuessed = [];
+    // for(let i=0 ; i <= keyword.length ; i++){
+    //     correctGuessed += '_ '
+    // }
+    // console.log(correctGuessed);
+
     let hearts = 6;
     let lettersClicked = "";
     let correctGuessed = ['_ ','_ ','_ ','_ ','_ ','_ '];
     const keyword = "action";
     const letters = document.querySelectorAll(".keyboard-letters");
-    const failureSound = (new Audio("staticAssets/sounds/failure.wav",volume = 0.1));
+    const failureSound = new Audio("staticAssets/sounds/failure.wav");
+    failureSound.volume = 0.4
 
     
     const img0 = "./staticAssets/img/gallows+head.jpg";
@@ -62,40 +72,10 @@ $(document).ready(function(){
 
                 //lower the hearts
                 hearts -= 1
-                console.log(hearts)
-                console.log($("img").attr("src"))
+
+                //change the images accordingly to the amount of wronged guesses
                 $("img").attr("src",images[hearts])
-                //add more body parts
-                // if (hearts = 6) {
-                //     $('img').attr("src","staticAssets/img/gallows.jpg")
-                // } else if (hearts = 5) {
-                //     console.log('5 hearts left')
-                //     hearts -= 1
-                //     $('img').attr("src","staticAssets/img/gallows+head.jpg")
-                // } else if (hearts = 4) {
-                //     console.log('4 hearts left')
-                //     //$('.img').html(img2);
-                // } else if (hearts = 3) {
-                //     $('.img').html(img3);
-                // } else if (hearts = 2) {
-                //     $('.img').html(img4);
-                // } else if (hearts = 1) {
-                //     $('.img').html(img5);
-                // } else if (hearts <= 0) {
-                //     $('.img').html(img6);
-                //     failureSound.play();
-                //     alert("Game over try again, click ok to refresh the page");
-                //     location.reload();
-                // }else{
-
-                // }
-
-                // $('.img').attr("src","staticAssets/img/gallows+head.jpg")
-
-                // if (hearts = 6) {
-                //     console.log('have only 6 more hearts left')
-                //     console.log(hearts)
-                // }
+                
 
                 if(hearts <= 0){
                     failureSound.play();

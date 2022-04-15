@@ -1,0 +1,11 @@
+.letter{
+    border-radius: 5px;
+    border: 1px solid #000000;
+    margin: 1mm;
+    width: 2rem;
+    height: 2rem;
+}
+
+.clicked{
+    border: 1px solid #ff0000;
+}

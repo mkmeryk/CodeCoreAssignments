@@ -1,4 +1,16 @@
+.area-around{
+    display: flex;
+    justify-content: center;
+    height: 7.5rem;
+    width: 27rem;
+    background-color: rgba(175, 0, 0, 0.829);
+    border-radius: 5px;
+    border: 1px solid #000000;
+
+}
+
 .letter{
+    background-color: rgb(234, 207, 241);
     border-radius: 5px;
     border: 1px solid #000000;
     margin: 1mm;
@@ -6,6 +18,21 @@
     height: 2rem;
 }
 
+.keyboard-letters{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
 .clicked{
-    border: 1px solid #ff0000;
+    border: 1px solid #059000;
+    background-color: rgb(191, 207, 216,0.5);
+}
+
+#guess-bar{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
 }

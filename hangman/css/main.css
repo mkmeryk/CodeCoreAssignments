@@ -6,7 +6,6 @@
     background-color: rgba(175, 0, 0, 0.829);
     border-radius: 5px;
     border: 1px solid #000000;
-
 }
 
 .letter{
@@ -42,5 +41,16 @@
     margin: 1mm;
     display: flex;
     justify-content: center;
-    
 }
+
+.header{
+    display: flex;
+    justify-content: center;
+    font-family:Georgia, 'Times New Roman', Times, serif;
+}
+
+.keyboard-body{
+    display: flex;
+    justify-content: center;
+}
+

@@ -54,3 +54,8 @@
     justify-content: center;
 }
 
+.msg{
+    display: flex;
+    justify-content: center;
+}
+

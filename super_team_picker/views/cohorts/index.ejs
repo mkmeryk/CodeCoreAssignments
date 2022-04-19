@@ -1,0 +1,44 @@
+<%- include("../partials/header.ejs") %>
+
+    <div class="page">
+
+        <h5 class="mx-3">
+            Cohorts
+        </h5>
+
+        <div class="d-flex pd-2 flex-column gap-2 mt-2">
+
+            <% for(let cohort of cohorts){%> 
+            <div class=" 'card mb-4" >
+
+                <div class="form-control">
+
+                    <div>
+                        <% if(cohort.logo_url){%>
+                        <img class="rounded-circle" src="<%- cohort.logo_url%>" alt="cohorts logo">
+                        <% } %>
+                    </div>
+
+                    <div>
+                        <h5 class="mx-3">
+                            <%-cohort.name%>
+                        </h5>
+                    </div>
+
+                    <p>
+                        <%- cohort.members %>
+
+                    </p>
+
+                    <a class="btn btn-outline-primary" href="/cohorts/<%-cohort.id%>">Show cohort</a>
+
+                </div>
+
+            </div>
+            <% } %>
+
+        </div>
+
+    </div>
+        
+<%- include("../partials/footer.ejs") %>
